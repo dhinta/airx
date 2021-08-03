@@ -1,0 +1,25 @@
+{
+  "name": "airx",
+  "version": "1.0.0",
+  "description": "Mono Repo Micro Frontend React Application",
+  "main": "index.js",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhinta/airx.git"
+  },
+  "author": "Debasish Chowdhury",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dhinta/airx/issues"
+  },
+  "homepage": "https://github.com/dhinta/airx#readme",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
