@@ -3,5 +3,22 @@ import ReactDOM from 'react-dom';
 
 import App from './components/App';
 
-const homeRoot = document.querySelector('#_home_root');
-ReactDOM.render(<App />, homeRoot);
+const mount = (rootElementRef) => {
+  ReactDOM.render(<App />, rootElementRef);
+};
+
+const mountInIsolation = (elementRef) => {
+  ReactDOM.render(<App />, elementRef);
+};
+
+const init = () => {
+  const homeRoot = document.querySelector('#_home_root');
+
+  if (homeRoot) {
+    mountInIsolation(homeRoot);
+  }
+};
+
+init();
+
+export { mount };

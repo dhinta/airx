@@ -17,6 +17,7 @@ const devConfig = {
       name: 'host',
       remotes: {
         '@airx-header': 'header@http://localhost:5001/remoteEntry.js',
+        '@airx-home': 'home@http://localhost:5002/remoteEntry.js',
       },
     }),
     new DefinePlugin({

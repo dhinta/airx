@@ -1,5 +1,13 @@
+import Header from './app-wrapper/Header';
+import Home from './app-wrapper/Home';
+
 const App = () => {
-  return <h1>Root Application</h1>;
+  return (
+    <>
+      <Header />
+      <Home />
+    </>
+  );
 };
 
 export default App;
