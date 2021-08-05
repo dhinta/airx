@@ -16,7 +16,7 @@ const devConfig = {
     new ModuleFederationPlugin({
       name: 'host',
       remotes: {
-        '@airx-header': 'header@http://localhost:5002/remoteEntry.js',
+        '@airx-header': 'header@http://localhost:5001/remoteEntry.js',
       },
     }),
     new DefinePlugin({

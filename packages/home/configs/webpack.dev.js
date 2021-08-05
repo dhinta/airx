@@ -8,16 +8,16 @@ const devConfig = {
   mode: 'development',
   devtool: 'source-map',
   devServer: {
-    port: 5001,
+    port: 5002,
     historyApiFallback: true,
     open: true,
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'header',
+      name: 'home',
       filename: 'remoteEntry.js',
       exposes: {
-        './headerApp': './src/bootstrap.js',
+        './homeApp': './src/bootstrap.js',
       },
     }),
     new DefinePlugin({
