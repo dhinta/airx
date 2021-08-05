@@ -12,7 +12,10 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
-  "rules": {},
+  "rules": {
+    "object-curly-spacing": "off",
+    "react/react-in-jsx-scope": "off"
+  },
   "settings": {
     "react": {
       "version": "detect"

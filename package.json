@@ -4,11 +4,13 @@
   "description": "Mono Repo Micro Frontend React Application",
   "main": "index.js",
   "workspaces": [
-    "packages/*"
+    "packages/header"
   ],
   "scripts": {
+    "start": "npm run kill-ports && lerna run start",
     "lint": "eslint packages/**/*.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "kill-ports": "kill-port --port 5000,5001,5002"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,7 @@
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.24.0",
     "husky": "^7.0.1",
+    "kill-port": "^1.6.1",
     "lerna": "^4.0.0"
   }
 }
