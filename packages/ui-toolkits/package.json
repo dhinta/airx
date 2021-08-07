@@ -1,0 +1,32 @@
+{
+  "name": "@airx/ui-toolkits",
+  "version": "1.0.0",
+  "description": "ui toolkits for airx",
+  "author": "dhinta <relaxed.dhinta@gmail.com>",
+  "homepage": "https://github.com/dhinta/airx/tree/main/packages/ui-toolkits#readme",
+  "license": "ISC",
+  "main": "src/index.js",
+  "directories": {
+    "src": "src",
+    "test": "__tests__"
+  },
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhinta/airx.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/dhinta/airx/issues"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
