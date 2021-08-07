@@ -1,5 +1,7 @@
+import Menu from './menu/Menu';
+
 const App = () => {
-  return <h1>Head</h1>;
+  return <Menu />;
 };
 
 export default App;

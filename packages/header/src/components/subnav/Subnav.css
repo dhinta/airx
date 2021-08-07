@@ -1,0 +1,15 @@
+.field-container {
+  padding: 1em 0 0;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  width: 100%;
+}
+
+input:focus {
+    outline: none;
+}
