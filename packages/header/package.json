@@ -25,6 +25,7 @@
     "url": "https://github.com/dhinta/airx/issues"
   },
   "dependencies": {
+    "@airx/fragments": "^1.0.0",
     "bootstrap": "^5.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

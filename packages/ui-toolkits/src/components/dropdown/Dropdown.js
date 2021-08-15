@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-const Dropdown = ({ label, selection, data, handleChange }) => {
+const Dropdown = ({ label, value, data, onChange }) => {
   let labelId;
 
   useEffect(() => {
-    labelId = label.replace(/ /g, '_');
+    labelId = label ? label.replace(/ /g, '_') : '';
   }, [label]);
 
   const list = () => {
@@ -29,8 +29,9 @@ const Dropdown = ({ label, selection, data, handleChange }) => {
       <Select
         labelId={labelId}
         id={`select_${labelId}`}
-        value={selection}
-        onChange={handleChange}
+        value={value}
+        onChange={onChange}
+        style={{ width: '100%' }}
       >
         {list()}
       </Select>
@@ -40,16 +41,16 @@ const Dropdown = ({ label, selection, data, handleChange }) => {
 
 Dropdown.propTypes = {
   label: PropTypes.string.isRequired,
-  selection: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 Dropdown.defaulProps = {
   label: 'Select',
-  val: '',
+  value: '',
   data: [],
-  handleChange: () => {
+  onChange: () => {
     console.log(new Error('Change Handler Missing'));
   },
 };
