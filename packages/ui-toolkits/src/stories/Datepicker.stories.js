@@ -5,7 +5,7 @@ import Datepicker from '../components/datepicker/Datepicker';
 
 const actionData = {
   onChange(event) {
-    action('onChange')(event);
+    action('onChange')(event.target.value);
   },
 };
 

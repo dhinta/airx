@@ -19,22 +19,19 @@ export default {
   },
 };
 
-const Template = (args) => {
-  console.log(args);
-  return <AutoComplete {...args} />;
-};
+const Template = (args) => <AutoComplete {...args} />;
 
 export const SingleSelect = Template.bind({});
 SingleSelect.args = {
   label: 'Movies',
   data: [
-    { title: 'Avengers' },
-    { title: 'A few good men' },
-    { title: 'Pursuit of happiness' },
-    { title: 'Pisaach' },
-    { title: 'Life of pi' },
+    { title: 'Avengers', id: '1' },
+    { title: 'A few good men', id: '2' },
+    { title: 'Pursuit of happiness', id: '3' },
+    { title: 'Pisaach', id: '4' },
+    { title: 'Life of pi', id: '5' },
   ],
-  value: { title: 'Pursuit of happiness' },
+  value: { title: 'Pursuit of happiness', id: '3' },
   ...actionsData,
 };
 
@@ -42,13 +39,16 @@ export const MultiSelect = Template.bind({});
 MultiSelect.args = {
   label: 'Movies',
   data: [
-    { title: 'Avengers' },
-    { title: 'A few good men' },
-    { title: 'Pursuit of happiness' },
-    { title: 'Pisaach' },
-    { title: 'Life of pi' },
+    { title: 'Avengers', id: '1' },
+    { title: 'A few good men', id: '2' },
+    { title: 'Pursuit of happiness', id: '3' },
+    { title: 'Pisaach', id: '4' },
+    { title: 'Life of pi', id: '5' },
   ],
-  value: [{ title: 'Pursuit of happiness' }, { title: 'Life of pi' }],
+  value: [
+    { title: 'Pursuit of happiness', id: '3' },
+    { title: 'Life of pi', id: '5' },
+  ],
   limitSelection: 1,
   isMultiple: true,
   ...actionsData,

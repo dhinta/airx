@@ -57,7 +57,7 @@ AutoComplete.propTypes = {
   label: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
-  defaultVal: PropTypes.oneOfType([
+  value: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.shape({ title: PropTypes.string })),
     PropTypes.shape({
       title: PropTypes.string,
@@ -73,7 +73,7 @@ AutoComplete.defaultProps = {
   onChange() {
     console.error('No change handler provided');
   },
-  defaultVal: [],
+  value: null,
   limitVisible: 1,
   isMultiple: false,
 };

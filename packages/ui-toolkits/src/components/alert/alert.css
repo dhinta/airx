@@ -29,7 +29,7 @@
     border-color: #f5c2c7;
   }
   .msg.error::before {
-    background-image: url("/images/error.png");
+    /* background-image: url("images/error.png"); */
   }
 
   .msg.info {
@@ -38,5 +38,5 @@
     border-color: #b6effb;
   }
   .msg.info::before {
-    background-image: url("/images/info.png");
+    /* background-image: url("images/info.png"); */
   }
