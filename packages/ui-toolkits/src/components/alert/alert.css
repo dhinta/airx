@@ -1,7 +1,7 @@
 .msg {
     width: 100%;
-    padding: 1em 1em 1em 2em;
-    font-size: 15px;
+    padding: .5em;
+    font-size: 13px;
     font-weight: 500;
     position: relative;
   }

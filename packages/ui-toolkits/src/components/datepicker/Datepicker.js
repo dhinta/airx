@@ -3,15 +3,34 @@ import TextField from '@material-ui/core/TextField';
 
 const Datepicker = ({ label, isDateRange, value, onChange }) => {
   const width = isDateRange ? '45%' : '100%';
+  let dates = value;
+
+  if (isDateRange) {
+    if (!value) {
+      dates = [];
+    } else if (value instanceof Array) {
+      dates = [...value];
+    } else if (!(value instanceof Array)) {
+      dates = [value];
+    }
+  }
+
   return (
     <>
       <TextField
         id="date"
         label={isDateRange ? label[0] : label}
         type="date"
-        defaultValue={isDateRange && value instanceof Array ? value[0] : value}
+        defaultValue={isDateRange ? dates[0] : dates}
         style={{ width, paddingRight: '5%' }}
-        onChange={onChange}
+        onChange={(e) => {
+          if (isDateRange) {
+            dates[0] = e.target.value;
+          } else {
+            dates = e.target.value;
+          }
+          onChange(dates, e);
+        }}
         InputLabelProps={{
           shrink: true,
         }}
@@ -22,9 +41,12 @@ const Datepicker = ({ label, isDateRange, value, onChange }) => {
           id="date"
           label={label[1]}
           type="date"
-          defaultValue={value && value instanceof Array ? value[1] : value}
+          defaultValue={dates[1]}
           style={{ width }}
-          onChange={onChange}
+          onChange={(e) => {
+            dates[1] = e.target.value;
+            onChange(dates, e);
+          }}
           InputLabelProps={{
             shrink: true,
           }}

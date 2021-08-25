@@ -4,8 +4,8 @@ import { action } from '@storybook/addon-actions';
 import Datepicker from '../components/datepicker/Datepicker';
 
 const actionData = {
-  onChange(event) {
-    action('onChange')(event.target.value);
+  onChange(val, event) {
+    action('onChange')(val, event);
   },
 };
 

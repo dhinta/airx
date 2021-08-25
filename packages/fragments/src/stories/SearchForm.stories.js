@@ -45,8 +45,8 @@ export const SearchFormWithDefaultSelect = Template.bind({});
 SearchFormWithDefaultSelect.args = {
   airports,
   tripTypes,
-  originDefaultVal: { title: 'Atlanta', code: 'ATL' },
-  destinationDefaultVal: { title: 'Minneapolis', code: 'MSP' },
+  origin: { title: 'Atlanta', code: 'ATL' },
+  destination: { title: 'Minneapolis', code: 'MSP' },
   selectedTripType: 'ROUND_TRIP',
   startDate: '2021-09-24',
   endDate: '2021-09-29',

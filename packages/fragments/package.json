@@ -27,6 +27,7 @@
     "url": "https://github.com/dhinta/airx/issues"
   },
   "devDependencies": {
+    "@airx/ui-toolkits": "^1.0.1",
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
@@ -36,12 +37,15 @@
     "@storybook/addon-actions": "^6.3.7",
     "@storybook/addon-essentials": "^6.3.7",
     "@storybook/addon-links": "^6.3.7",
+    "@storybook/builder-webpack5": "^6.3.7",
+    "@storybook/manager-webpack5": "^6.3.7",
     "@storybook/react": "^6.3.7",
     "babel-loader": "^8.2.2",
     "bootstrap": "^5.1.0",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^6.2.0",
     "file-loader": "^6.2.0",
+    "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "style-loader": "^3.2.1",
@@ -49,18 +53,17 @@
     "webpack": "^5.50.0",
     "webpack-cli": "^4.8.0",
     "webpack-node-externals": "^3.0.0",
-    "@storybook/builder-webpack5": "^6.3.7",
-    "@storybook/manager-webpack5": "^6.3.7"
+    "yup": "^0.32.9"
   },
   "peerDependencies": {
+    "@airx/ui-toolkits": "*",
     "@material-ui/core": "*",
     "@material-ui/lab": "*",
     "@material-ui/pickers": "*",
     "bootstrap": "*",
     "react": "*",
-    "react-dom": "*"
-  },
-  "dependencies": {
-    "@airx/ui-toolkits": "^1.0.1"
+    "react-dom": "*",
+    "formik": "*",
+    "yup": "*"
   }
 }
