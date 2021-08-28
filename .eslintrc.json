@@ -18,7 +18,19 @@
     "indent": [2, 2, { "SwitchCase": 1 }],
     "comma-dangle": [2, "always-multiline"],
     "operator-linebreak": 0,
-    "space-before-function-paren": "off"
+    "space-before-function-paren": "off",
+    "require-jsdoc": [
+      "error",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": false,
+          "ClassDeclaration": false,
+          "ArrowFunctionExpression": false,
+          "FunctionExpression": false
+        }
+      }
+    ]
   },
   "settings": {
     "react": {
