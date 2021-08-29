@@ -56,14 +56,16 @@
     "yup": "^0.32.9"
   },
   "peerDependencies": {
-    "@airx/ui-toolkits": "*",
     "@material-ui/core": "*",
     "@material-ui/lab": "*",
     "@material-ui/pickers": "*",
     "bootstrap": "*",
+    "formik": "*",
     "react": "*",
     "react-dom": "*",
-    "formik": "*",
     "yup": "*"
+  },
+  "dependencies": {
+    "styled-components": "^5.3.1"
   }
 }

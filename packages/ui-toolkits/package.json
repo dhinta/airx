@@ -58,5 +58,8 @@
     "@material-ui/pickers": "*",
     "react": "*",
     "react-dom": "*"
+  },
+  "dependencies": {
+    "styled-components": "^5.3.1"
   }
 }

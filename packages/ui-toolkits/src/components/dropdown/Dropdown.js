@@ -46,7 +46,7 @@ Dropdown.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-Dropdown.defaulProps = {
+Dropdown.defaultProps = {
   label: 'Select',
   value: '',
   data: [],

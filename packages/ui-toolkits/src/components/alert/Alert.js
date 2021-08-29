@@ -1,8 +1,21 @@
-import './alert.css';
+import {
+  StyledSuccessAlert,
+  StyledErrorAlert,
+  StyledInfoAlert,
+} from './Alert.styled';
 import PropTypes from 'prop-types';
 
 const Alert = ({ msg, type = 'success' }) => {
-  return <div className={`msg ${type}`}>{msg}</div>;
+  switch (type) {
+    case 'success':
+      return <StyledSuccessAlert>{msg}</StyledSuccessAlert>;
+    case 'error':
+      return <StyledErrorAlert>{msg}</StyledErrorAlert>;
+    case 'info':
+      return <StyledInfoAlert>{msg}</StyledInfoAlert>;
+    default:
+      return <StyledInfoAlert>{msg}</StyledInfoAlert>;
+  }
 };
 
 Alert.propTypes = {
