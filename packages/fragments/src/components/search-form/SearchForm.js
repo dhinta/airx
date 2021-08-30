@@ -3,9 +3,11 @@ import { PropTypes } from 'prop-types';
 import { Component } from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { ThemeProvider } from 'styled-components';
 
 import { AutoComplete, Dropdown, Datepicker, Alert } from '@airx/ui-toolkits';
-import './SearchForm.css';
+import Theme from '../styled/theme';
+import { StyledFieldContainer } from './SearchForm.styled';
 
 class SearchForm extends Component {
   constructor(props) {
@@ -13,9 +15,20 @@ class SearchForm extends Component {
     this.state = {
       isDateRange: false,
       datePickerLabel: 'Depart',
-      tripType: props.selectedTripType,
-      datePickerValues: props.startDate,
+      tripType: '',
+      datePickerValues: '',
     };
+    this.tripTypes = [
+      { text: 'One Way', value: 'ONE_WAY' },
+      { text: 'Round Trip', value: 'ROUND_TRIP' },
+    ];
+    this.airports = [
+      { title: 'Netaji Bose Int Airport', code: 'CCU' },
+      { title: 'Atlanta', code: 'ATL' },
+      { title: 'Minneapolis', code: 'MSP' },
+      { title: 'Los Angeles', code: 'LAX' },
+      { title: 'Paris', code: 'CDG' },
+    ];
   }
 
   componentDidMount() {
@@ -31,100 +44,105 @@ class SearchForm extends Component {
   render() {
     const initialValues = this.getInialvalues();
     const validationSchema = this.getValidationSchema();
+    const themeConfiguration = Theme[this.props.selectedTheme];
     return (
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      >
-        {({ values, errors, setFieldValue }) => {
-          return (
-            <Form>
-              <div className="container">
-                <div className="row">
-                  <div className="col-2">
-                    <div className="field-container">
-                      <AutoComplete
-                        name="origin"
-                        label="Origin"
-                        data={this.props.airports}
-                        onChange={(e, val) => setFieldValue('origin', val)}
-                        value={values.origin}
-                      />
-                      <ErrorMessage
-                        name="origin"
-                        render={(msg) => <Alert msg={msg} type="error" />}
-                      />
+      <ThemeProvider theme={themeConfiguration}>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={(values) => {
+            console.log(values);
+          }}
+        >
+          {({ values, errors, setFieldValue }) => {
+            return (
+              <Form>
+                <div className="container">
+                  <div className="row">
+                    <div className="col-2">
+                      <StyledFieldContainer>
+                        <AutoComplete
+                          name="origin"
+                          label="Origin"
+                          data={this.airports}
+                          onChange={(e, val) => setFieldValue('origin', val)}
+                          value={values.origin}
+                        />
+                        <ErrorMessage
+                          name="origin"
+                          render={(msg) => <Alert msg={msg} type="error" />}
+                        />
+                      </StyledFieldContainer>
                     </div>
-                  </div>
-                  <div className="col-2">
-                    <div className="field-container">
-                      <AutoComplete
-                        name="destination"
-                        label="Destination"
-                        data={this.props.airports}
-                        onChange={(e, val) => setFieldValue('destination', val)}
-                        value={values.destination}
-                      />
-                      <ErrorMessage
-                        name="destination"
-                        render={(msg) => <Alert msg={msg} type="error" />}
-                      />
+                    <div className="col-2">
+                      <StyledFieldContainer>
+                        <AutoComplete
+                          name="destination"
+                          label="Destination"
+                          data={this.airports}
+                          onChange={(e, val) =>
+                            setFieldValue('destination', val)
+                          }
+                          value={values.destination}
+                        />
+                        <ErrorMessage
+                          name="destination"
+                          render={(msg) => <Alert msg={msg} type="error" />}
+                        />
+                      </StyledFieldContainer>
                     </div>
-                  </div>
-                  <div className="col-2">
-                    <div className="field-container">
-                      <Dropdown
-                        name="tripType"
-                        label="Trip Type"
-                        value={values.tripType}
-                        data={this.props.tripTypes}
-                        onChange={(e) =>
-                          this.onTripTypeChange(e, values, setFieldValue)
-                        }
-                      />
-                      <ErrorMessage
-                        name="tripType"
-                        render={(msg) => <Alert msg={msg} type="error" />}
-                      />
+                    <div className="col-2">
+                      <StyledFieldContainer>
+                        <Dropdown
+                          name="tripType"
+                          label="Trip Type"
+                          value={values.tripType}
+                          data={this.tripTypes}
+                          onChange={(e) =>
+                            this.onTripTypeChange(e, values, setFieldValue)
+                          }
+                        />
+                        <ErrorMessage
+                          name="tripType"
+                          render={(msg) => <Alert msg={msg} type="error" />}
+                        />
+                      </StyledFieldContainer>
                     </div>
-                  </div>
-                  <div className="col-4">
-                    <div className="field-container">
-                      <Datepicker
-                        label={this.state.datePickerLabel}
-                        isDateRange={this.state.isDateRange}
-                        value={values.datePickerValues}
-                        onChange={(val) => {
-                          setFieldValue('datePickerValues', val);
-                        }}
-                      />
-                      {errors.startDate ? (
-                        <Alert msg={errors.startDate} type="error" />
-                      ) : null}
-                      {errors.endDate ? (
-                        <Alert msg={errors.endDate} type="error" />
-                      ) : null}
+                    <div className="col-4">
+                      <StyledFieldContainer>
+                        <Datepicker
+                          label={this.state.datePickerLabel}
+                          isDateRange={this.state.isDateRange}
+                          value={values.datePickerValues}
+                          onChange={(val) => {
+                            setFieldValue('datePickerValues', val);
+                          }}
+                        />
+                        {errors.startDate ? (
+                          <Alert msg={errors.startDate} type="error" />
+                        ) : null}
+                        {errors.endDate ? (
+                          <Alert msg={errors.endDate} type="error" />
+                        ) : null}
+                      </StyledFieldContainer>
                     </div>
-                  </div>
-                  <div className="col-2">
-                    <div className="field-container">
-                      <button
-                        type="submit"
-                        className="btn btn-danger search-btn"
-                      >
-                        Search
-                      </button>
+                    <div className="col-2">
+                      <div className="field-container">
+                        <button
+                          type="submit"
+                          className="btn btn-danger search-btn"
+                        >
+                          Search
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Form>
-          );
-        }}
-      </Formik>
+              </Form>
+            );
+          }}
+        </Formik>
+      </ThemeProvider>
     );
   }
 
@@ -133,24 +151,23 @@ class SearchForm extends Component {
       this.setState({
         isDateRange: true,
         datePickerLabel: ['Depart', 'Return'],
-        datePickerValues: [this.props.startDate, this.props.endDate],
+        datePickerValues: [],
       });
     } else {
       this.setState({
         isDateRange: false,
         datePickerLabel: 'Depart',
-        datePickerValues: this.props.startDate,
+        datePickerValues: '',
       });
     }
   }
 
   getInialvalues() {
-    const { origin, destination } = this.props;
     const { tripType, datePickerValues } = this.state;
 
     return {
-      origin,
-      destination,
+      origin: null,
+      destination: null,
       tripType,
       datePickerValues,
     };
@@ -215,22 +232,11 @@ class SearchForm extends Component {
 }
 
 SearchForm.propTypes = {
-  airports: PropTypes.arrayOf(PropTypes.shape({ title: PropTypes.string })),
-  origin: PropTypes.shape({ title: PropTypes.string }),
-  destination: PropTypes.shape({ title: PropTypes.string }),
-  tripTypes: PropTypes.arrayOf(
-    PropTypes.shape({
-      text: PropTypes.string,
-      value: PropTypes.string,
-    }),
-  ),
-  selectedTripType: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  startDate: PropTypes.string,
-  endDate: PropTypes.string,
+  selectedTheme: PropTypes.string,
 };
 
 SearchForm.defaultProps = {
-  selectedTripType: '',
+  selectedTheme: 'default',
 };
 
 export default SearchForm;
