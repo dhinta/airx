@@ -52,10 +52,6 @@ export const StyledFieldContainer = styled.div`
     .MuiAutocomplete-input {
     padding: 9.5px 4px 0;
   }
-  .search-btn {
-    width: 8em;
-    height: 3em;
-  }
   input {
     background-color: transparent;
     border: none;
@@ -66,4 +62,9 @@ export const StyledFieldContainer = styled.div`
       outline: none;
     }
   }
+`;
+
+export const StyledButton = styled.button`
+  width: 8em;
+  height: 2.5em;
 `;

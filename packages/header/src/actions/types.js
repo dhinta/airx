@@ -1,0 +1,6 @@
+const ACTION_TYPES = {
+  GET_AIRPORTS: 'GET_AIRPORTS',
+  GET_TRIP: 'GET_TRIP',
+};
+
+export default ACTION_TYPES;

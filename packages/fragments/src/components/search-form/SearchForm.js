@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { AutoComplete, Dropdown, Datepicker, Alert } from '@airx/ui-toolkits';
 import Theme from '../styled/theme';
-import { StyledFieldContainer } from './SearchForm.styled';
+import { StyledFieldContainer, StyledButton } from '../styled/app.styled';
 
 class SearchForm extends Component {
   constructor(props) {
@@ -18,21 +18,12 @@ class SearchForm extends Component {
       tripType: '',
       datePickerValues: '',
     };
-    this.tripTypes = [
-      { text: 'One Way', value: 'ONE_WAY' },
-      { text: 'Round Trip', value: 'ROUND_TRIP' },
-    ];
-    this.airports = [
-      { title: 'Netaji Bose Int Airport', code: 'CCU' },
-      { title: 'Atlanta', code: 'ATL' },
-      { title: 'Minneapolis', code: 'MSP' },
-      { title: 'Los Angeles', code: 'LAX' },
-      { title: 'Paris', code: 'CDG' },
-    ];
   }
 
   componentDidMount() {
     this.initForm();
+    this.props.getAirports();
+    this.props.getTripTypes();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -64,7 +55,7 @@ class SearchForm extends Component {
                         <AutoComplete
                           name="origin"
                           label="Origin"
-                          data={this.airports}
+                          data={this.props.data.airports}
                           onChange={(e, val) => setFieldValue('origin', val)}
                           value={values.origin}
                         />
@@ -79,7 +70,7 @@ class SearchForm extends Component {
                         <AutoComplete
                           name="destination"
                           label="Destination"
-                          data={this.airports}
+                          data={this.props.data.airports}
                           onChange={(e, val) =>
                             setFieldValue('destination', val)
                           }
@@ -97,7 +88,7 @@ class SearchForm extends Component {
                           name="tripType"
                           label="Trip Type"
                           value={values.tripType}
-                          data={this.tripTypes}
+                          data={this.props.data.tripTypes}
                           onChange={(e) =>
                             this.onTripTypeChange(e, values, setFieldValue)
                           }
@@ -128,12 +119,12 @@ class SearchForm extends Component {
                     </div>
                     <div className="col-2">
                       <div className="field-container">
-                        <button
+                        <StyledButton
                           type="submit"
-                          className="btn btn-danger search-btn"
+                          className="btn btn-danger"
                         >
                           Search
-                        </button>
+                        </StyledButton>
                       </div>
                     </div>
                   </div>
@@ -177,13 +168,13 @@ class SearchForm extends Component {
     return yup.object().shape({
       origin: yup
         .object()
-        .shape({ title: yup.string(), code: yup.string() })
+        .shape({ title: yup.string(), id: yup.string() })
         .nullable()
         .default(null)
         .required('Origin required'),
       destination: yup
         .object()
-        .shape({ title: yup.string(), code: yup.string() })
+        .shape({ title: yup.string(), id: yup.string() })
         .nullable()
         .default(null)
         .required('Destination required'),
@@ -233,6 +224,9 @@ class SearchForm extends Component {
 
 SearchForm.propTypes = {
   selectedTheme: PropTypes.string,
+  data: PropTypes.object,
+  getAirports: PropTypes.func,
+  getTripTypes: PropTypes.func,
 };
 
 SearchForm.defaultProps = {
