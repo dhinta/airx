@@ -42,14 +42,16 @@ const Nav = () => {
     });
   };
   return (
-    <div className="container">
-      <div className="row">
-        <StyledMenuContainer>
-          <Logo />
-          <StyledNav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-            {getLinks()}
-          </StyledNav>
-        </StyledMenuContainer>
+    <div className="border-bottom-white w-100">
+      <div className="container">
+        <div className="row">
+          <StyledMenuContainer>
+            <Logo />
+            <StyledNav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+              {getLinks()}
+            </StyledNav>
+          </StyledMenuContainer>
+        </div>
       </div>
     </div>
   );

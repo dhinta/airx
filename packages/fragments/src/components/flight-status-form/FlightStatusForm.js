@@ -60,7 +60,7 @@ const FlightStatusForm = ({ selectedTheme, data, getAirports }) => {
         {({ values, errors, setFieldValue }) => {
           return (
             <Form>
-              <div className="container">
+              <div className="container py-2">
                 <div className="row">
                   <div className="col-3">
                     <StyledFieldContainer>

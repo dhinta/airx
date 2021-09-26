@@ -48,7 +48,7 @@ class SearchForm extends Component {
           {({ values, errors, setFieldValue }) => {
             return (
               <Form>
-                <div className="container">
+                <div className="container py-2">
                   <div className="row">
                     <div className="col-2">
                       <StyledFieldContainer>

@@ -5,10 +5,8 @@ import Subnav from '../subnav/Subnav';
 const Menu = () => {
   return (
     <>
-      <div className="container-fluid dark-bg border-bottom-white">
+      <div className="container-fluid dark-bg px-0">
         <Nav />
-      </div>
-      <div className="container-fluid dark-bg py-2">
         <Subnav />
       </div>
     </>
