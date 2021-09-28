@@ -8,7 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import reducers from './reducers';
 import App from './components/App';
-import getHistory from './helpers/router.config';
+import getHistory from './helpers/history';
 
 const store = createStore(
   reducers,

@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -35,5 +36,8 @@ module.exports = {
   ],
   resolve: {
     modules: ['node_modules'],
+    alias: {
+      react: path.resolve(__dirname, '../node_modules/react'),
+    },
   },
 };

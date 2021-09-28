@@ -3,5 +3,6 @@ import AutoComplete from './components/autocomplete/AutoComplete';
 import Dropdown from './components/dropdown/Dropdown';
 import Datepicker from './components/datepicker/Datepicker';
 import Text from './components/text/Text';
+import Banner from './components/banner/Banner';
 
-export { AutoComplete, Dropdown, Alert, Datepicker, Text };
+export { AutoComplete, Dropdown, Alert, Datepicker, Text, Banner };
