@@ -1,4 +1,5 @@
 import { Banner } from '@airx/ui-toolkits';
+import News from '../../news/News';
 const Landing = () => {
   const data = [
     {
@@ -36,7 +37,16 @@ const Landing = () => {
   ];
   return (
     <div className="container-fluid">
-      <Banner data={data} />
+      <div className="row">
+        <div className="col-12 px-0">
+          <Banner data={data} />
+        </div>
+      </div>
+      <div className="row mt-3">
+        <div className="col-12">
+          <News />
+        </div>
+      </div>
     </div>
   );
 };

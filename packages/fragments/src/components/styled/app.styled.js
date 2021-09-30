@@ -68,3 +68,9 @@ export const StyledButton = styled.button`
   width: 8em;
   height: 2.5em;
 `;
+
+export const StyledWrapper = styled.div`
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.foregroundColor};
+  border-top: 1px solid ${(props) => props.theme.borderColor};
+`;
