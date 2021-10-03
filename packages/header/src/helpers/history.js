@@ -1,5 +1,4 @@
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory, createMemoryHistory } from 'history';
 
-const getHistory = () => createBrowserHistory();
-
-export default getHistory;
+export const getBrowserHistory = () => createBrowserHistory();
+export const getMemoryHistory = () => createMemoryHistory();

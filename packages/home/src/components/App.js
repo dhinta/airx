@@ -17,6 +17,9 @@ const App = ({ history }) => {
           <Route path="/" exact>
             <Landing />
           </Route>
+          <Route path="/flight-status">
+            <Landing />
+          </Route>
           <Route path="/contact">
             <Contact />
           </Route>

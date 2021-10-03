@@ -8,15 +8,36 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import reducers from './reducers';
 import App from './components/App';
-import getHistory from './helpers/history';
+import { getBrowserHistory, getMemoryHistory } from './helpers/history';
+
+const getConfig = (history) => {
+  return {
+    onRouteChange(newPathname) {
+      const {
+        location: { pathname },
+      } = history;
+      if (pathname !== newPathname) {
+        history.push(newPathname);
+      }
+    },
+  };
+};
+
+const bindHistoryChange = (history, onNavigate) => {
+  history.listen((location) => {
+    onNavigate(location);
+  });
+};
 
 const store = createStore(
   reducers,
   composeWithDevTools(applyMiddleware(thunk)),
 );
 
-const mount = (rootElementRef) => {
-  const history = getHistory();
+const mount = (rootElementRef, { onNavigate }, navigationUrl) => {
+  const history = getMemoryHistory();
+  history.push(navigationUrl);
+  bindHistoryChange(history, onNavigate);
   ReactDOM.render(
     <StrictMode>
       <Provider store={store}>
@@ -25,10 +46,12 @@ const mount = (rootElementRef) => {
     </StrictMode>,
     rootElementRef,
   );
+  return getConfig(history);
 };
 
 const mountInIsolation = (elementRef) => {
-  const history = getHistory();
+  const history = getBrowserHistory();
+  bindHistoryChange(history);
   ReactDOM.render(
     <StrictMode>
       <Provider store={store}>

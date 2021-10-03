@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import { Link } from 'react-router-dom';
 const Contact = () => {
   return (
     <div className="container-fluid mt-3">
@@ -55,6 +56,9 @@ const Contact = () => {
             treatise on the theory of ethics, very popular during the
             Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
             amet..", comes from a line in section 1.10.32.
+          </p>
+          <p>
+            To learn more go to <Link to="/">Airx</Link>
           </p>
         </div>
       </div>
