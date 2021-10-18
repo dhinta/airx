@@ -6,6 +6,12 @@ const withModal = (ModalBodyComponent) => {
     constructor(props) {
       super(props);
     }
+    componentDidMount() {
+      document.body.classList.add('overflow-hidden');
+    }
+    componentWillUnmount() {
+      document.body.classList.remove('overflow-hidden');
+    }
     closeModal() {
       console.log('clean up before closing portal and modal');
       this.props.onClose();
