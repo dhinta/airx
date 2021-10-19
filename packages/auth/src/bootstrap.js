@@ -1,27 +1,27 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { applyMiddleware, createStore } from 'redux';
-// import thunk from 'redux-thunk';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-// import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-// import reducers from './reducers';
-// import App from './components/App';
-import { getMemoryHistory } from './helpers/history';
+import reducers from './reducers';
+import App from './components/App';
+import { getBrowserHistory, getMemoryHistory } from './helpers/history';
 
-// const getConfig = (history) => {
-//   return {
-//     onRouteChange(newPathname) {
-//       const {
-//         location: { pathname },
-//       } = history;
-//       if (pathname !== newPathname) {
-//         history.push(newPathname);
-//       }
-//     },
-//   };
-// };
+const getConfig = (history) => {
+  return {
+    onRouteChange(newPathname) {
+      const {
+        location: { pathname },
+      } = history;
+      if (pathname !== newPathname) {
+        history.push(newPathname);
+      }
+    },
+  };
+};
 
 const bindHistoryChange = (history, onNavigate) => {
   history.listen((location) => {
@@ -29,10 +29,10 @@ const bindHistoryChange = (history, onNavigate) => {
   });
 };
 
-// const store = createStore(
-//   reducers,
-//   composeWithDevTools(applyMiddleware(thunk)),
-// );
+const store = createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(thunk)),
+);
 
 const mount = (rootElementRef, { onNavigate }, navigationUrl) => {
   const history = getMemoryHistory();
@@ -41,8 +41,7 @@ const mount = (rootElementRef, { onNavigate }, navigationUrl) => {
   ReactDOM.render(
     <StrictMode>
       <Provider store={store}>
-        {/* <App history={history} /> */}
-        <h1>Auth App</h1>
+        <App history={history} />
       </Provider>
     </StrictMode>,
     rootElementRef,
@@ -51,14 +50,13 @@ const mount = (rootElementRef, { onNavigate }, navigationUrl) => {
 };
 
 const mountInIsolation = (elementRef) => {
-  // const history = getBrowserHistory();
-  // bindHistoryChange(history);
+  const history = getBrowserHistory();
+
   ReactDOM.render(
     <StrictMode>
-      {/* <Provider store={store}> */}
-      {/* <App history={history} /> */}
-      <h1>Auth App</h1>
-      {/* </Provider> */}
+      <Provider store={store}>
+        <App history={history} />
+      </Provider>
     </StrictMode>,
     elementRef,
   );
