@@ -10,7 +10,7 @@
     "start": "npm run kill-ports && lerna run start",
     "lint": "eslint packages/**/*.js",
     "prepare": "husky install",
-    "kill-ports": "kill-port --port 5000,5001,5002,6006,6007"
+    "kill-ports": "kill-port --port 5000,5001,5002,5003,6006,6007"
   },
   "repository": {
     "type": "git",
