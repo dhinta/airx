@@ -2,7 +2,7 @@ import TextField from '@material-ui/core/TextField';
 import { PropTypes } from 'prop-types';
 import { useEffect } from 'react';
 
-const Text = ({ label, value, onChange, type }) => {
+const Text = ({ label, value, onChange, type, ...restProps }) => {
   let labelId;
 
   useEffect(() => {
@@ -18,6 +18,7 @@ const Text = ({ label, value, onChange, type }) => {
       className="w-100"
       type={type}
       autoComplete="off"
+      {...restProps}
     />
   );
 };

@@ -1,4 +1,14 @@
 import { createBrowserHistory, createMemoryHistory } from 'history';
 
-export const getBrowserHistory = () => createBrowserHistory();
-export const getMemoryHistory = () => createMemoryHistory();
+let history = null;
+export const getBrowserHistory = () => {
+  history = createBrowserHistory();
+  return history;
+};
+export const getMemoryHistory = () => {
+  history = createMemoryHistory();
+  return history;
+};
+export const getHistory = () => {
+  return history;
+};

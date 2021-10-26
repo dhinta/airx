@@ -2,6 +2,10 @@ import { Text, Alert } from '@airx/ui-toolkits';
 import { Link } from 'react-router-dom';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { isEmailExistsAction, doSignupAction } from '../../actions';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -14,7 +18,11 @@ const validationSchema = Yup.object().shape({
     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
 });
 
-const Signup = () => {
+const Signup = ({ checkEmail, doSignup, isEmailExists, alert }) => {
+  const onSignup = (values) => {
+    const { email, name, password } = values;
+    doSignup({ email, name, password });
+  };
   const getForm = () => {
     return (
       <Formik
@@ -25,22 +33,35 @@ const Signup = () => {
           confPassword: '',
         }}
         validationSchema={validationSchema}
-        onSubmit={(e) => console.log(e)}
+        onSubmit={onSignup}
       >
-        {({ values, errors, setFieldValue }) => {
+        {({ values, errors, setFieldValue, setFieldError }) => {
           return (
             <Form>
+              {alert.msg ? (
+                <Alert msg={alert.msg} type={alert.type} className="mb-3" />
+              ) : null}
+
               <div className="mb-3">
                 <Text
                   label="Email"
                   name="email"
                   value={values.email}
                   onChange={(e) => setFieldValue('email', e.target.value)}
+                  onBlur={(e) => {
+                    if (!errors.email) {
+                      checkEmail(e.target.value);
+                    }
+                  }}
                 />
                 <ErrorMessage
                   name="email"
                   render={(msg) => <Alert msg={msg} type="error" />}
                 />
+                {isEmailExists ? (
+                  <Alert msg="Email already exists" type="error" />
+                ) : null}
+
                 <div id="emailHelp" className="form-text">
                   We will never share your email with anyone else.
                 </div>
@@ -110,4 +131,24 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+const mapStateToProps = ({ auth, alert }) => {
+  return {
+    isEmailExists: auth.isEmailExists,
+    alert,
+  };
+};
+
+export default connect(mapStateToProps, {
+  checkEmail: isEmailExistsAction,
+  doSignup: doSignupAction,
+})(Signup);
+
+Signup.propTypes = {
+  checkEmail: PropTypes.func.isRequired,
+  doSignup: PropTypes.func.isRequired,
+  isEmailExists: PropTypes.bool,
+  alert: PropTypes.shape({
+    type: PropTypes.string,
+    msg: PropTypes.string,
+  }),
+};

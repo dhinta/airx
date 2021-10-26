@@ -5,16 +5,17 @@ import {
 } from './Alert.styled';
 import PropTypes from 'prop-types';
 
-const Alert = ({ msg, type = 'success' }) => {
+const Alert = ({ msg, type = 'success', ...props }) => {
+  type = type.toLowerCase();
   switch (type) {
     case 'success':
-      return <StyledSuccessAlert>{msg}</StyledSuccessAlert>;
+      return <StyledSuccessAlert {...props}>{msg}</StyledSuccessAlert>;
     case 'error':
-      return <StyledErrorAlert>{msg}</StyledErrorAlert>;
+      return <StyledErrorAlert {...props}>{msg}</StyledErrorAlert>;
     case 'info':
-      return <StyledInfoAlert>{msg}</StyledInfoAlert>;
+      return <StyledInfoAlert {...props}>{msg}</StyledInfoAlert>;
     default:
-      return <StyledInfoAlert>{msg}</StyledInfoAlert>;
+      return <StyledInfoAlert {...props}>{msg}</StyledInfoAlert>;
   }
 };
 

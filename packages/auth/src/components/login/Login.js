@@ -1,8 +1,11 @@
-import { Text } from '@airx/ui-toolkits';
+import { Text, Alert } from '@airx/ui-toolkits';
 import { Link } from 'react-router-dom';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Alert } from '@airx/ui-toolkits';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+
+import { doLoginAction } from '../../actions';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -11,17 +14,20 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required('Please provide password'),
 });
 
-const Login = () => {
+const Login = ({ doLogin, alert }) => {
   const getForm = () => {
     return (
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={validationSchema}
-        onSubmit={(e) => console.log(e)}
+        onSubmit={(e) => doLogin(e)}
       >
-        {({ values, errors, setFieldValue }) => {
+        {({ values, setFieldValue }) => {
           return (
             <Form>
+              {alert.msg ? (
+                <Alert msg={alert.msg} type={alert.type} className="mb-3" />
+              ) : null}
               <div className="mb-3">
                 <Text
                   label="Email"
@@ -75,4 +81,18 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = ({ alert }) => {
+  return { alert };
+};
+
+export default connect(mapStateToProps, {
+  doLogin: doLoginAction,
+})(Login);
+
+Login.propTypes = {
+  doLogin: PropTypes.func.isRequired,
+  alert: PropTypes.shape({
+    type: PropTypes.string,
+    msg: PropTypes.string,
+  }),
+};

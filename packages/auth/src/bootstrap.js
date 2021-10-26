@@ -5,8 +5,11 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import promiseMiddleware from 'redux-promise';
+import { combineReducers } from 'redux';
 
 import reducers from './reducers';
+import { fragmentReducers } from '@airx/fragments';
 import App from './components/App';
 import { getBrowserHistory, getMemoryHistory } from './helpers/history';
 
@@ -30,8 +33,8 @@ const bindHistoryChange = (history, onNavigate) => {
 };
 
 const store = createStore(
-  reducers,
-  composeWithDevTools(applyMiddleware(thunk)),
+  combineReducers({...reducers, ...fragmentReducers}),
+  composeWithDevTools(applyMiddleware(thunk, promiseMiddleware)),
 );
 
 const mount = (rootElementRef, { onNavigate }, navigationUrl) => {
